@@ -11,14 +11,20 @@ pipeline {
 
         stage('Setup Environment') {
             steps {
-                sh 'python -m venv venv'
-                sh 'venv/bin/pip install -r requirements.txt'
-            }
+               bat '''
+                python --version
+                python -m venv venv
+                venv\\Scripts\\activate
+                pip install -r requirements.txt
+                '''            }
         }
 
         stage('Run Tests') {
             steps {
-                sh 'venv/bin/pytest -v'
+                bat '''
+                venv\\Scripts\\activate
+                pytest -v
+                '''
             }
         }
     }
