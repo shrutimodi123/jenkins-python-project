@@ -11,14 +11,14 @@ pipeline {
 
         stage('Setup Environment') {
             steps {
-                bat 'python -m venv venv'
-                bat 'venv\\Scripts\\pip install -r requirements.txt'
+                sh 'python -m venv venv'
+                sh 'venv/bin/pip install -r requirements.txt'
             }
         }
 
         stage('Run Tests') {
             steps {
-                bat 'venv\\Scripts\\pytest -v'
+                sh 'venv/bin/pytest -v'
             }
         }
     }
